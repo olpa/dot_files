@@ -10,10 +10,14 @@ set lines=24
 set columns=80
 
 set smartindent
-set softtabstop=2
-set shiftwidth=2
 set tabstop=8
 set expandtab
+
+set softtabstop=2
+set shiftwidth=2
+autocmd BufRead,BufNewFile *.py setlocal softtabstop=4
+autocmd BufRead,BufNewFile *.py setlocal shiftwidth=4
+
 " Disable for current file
 " setl noai nocin nosi inde=
 if has("win32")
