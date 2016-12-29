@@ -13,6 +13,8 @@ set smartindent
 set tabstop=8
 set expandtab
 
+set incsearch
+
 set softtabstop=2
 set shiftwidth=2
 autocmd BufRead,BufNewFile *.py setlocal softtabstop=4
