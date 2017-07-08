@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=13.0
+Type=Application
+Terminal=false
+Exec=/home/olpa/WebStorm-171.4424.63/bin/webstorm.sh
+Name=WebStorm
+Icon=/home/olpa/WebStorm-171.4424.63/bin/webstorm.svg
