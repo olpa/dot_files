@@ -2,7 +2,7 @@ scriptencoding utf-8
 set encoding=utf-8
 
 map <F2> <Esc>:1,$!xmllint --format -<CR>
-map <F3> <Esc>:'<,'>!wt2db<CR>
+map <F3> <Esc>:set lines=25<CR>
 map <F8> <Esc>:set tabstop=8<CR>
 map <F9> <Esc>:1,$s/\t/ /g<CR>
 
