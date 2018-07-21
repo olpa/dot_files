@@ -2,3 +2,10 @@ firefoxdriver:
 http://pk.archive.ubuntu.com/ubuntu/ubuntu/pool/multiverse/s/selenium-firefoxdriver/
 
 
+Workspaces for ubuntu 18.04
+$ sudo apt-get install gnome-tweak-tool
+https://github.com/zakkak/workspace-grid (for version: $ gnome-shell --version)
+- Unpack to ~/.local/share/gnome-shell/extensions
+- Activate
+- Disable dynamic workspaces, activate static workspaces
+Extension installation details: https://itsfoss.com/gnome-shell-extensions/
