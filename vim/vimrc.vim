@@ -54,4 +54,5 @@ else
 endif
 set list
 
-au BufRead access_log* setf httplog
+" au BufRead access_log* setf httplog
+inoremap jj <ESC>
