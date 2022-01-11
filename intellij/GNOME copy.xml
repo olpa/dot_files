@@ -1,0 +1,12 @@
+<keymap version="1" name="GNOME copy" parent="Default for GNOME">
+  <action id="EditorSelectWord" />
+  <action id="NextTab">
+    <keyboard-shortcut first-keystroke="alt right" />
+    <keyboard-shortcut first-keystroke="ctrl w" second-keystroke="l" />
+  </action>
+  <action id="PreviousTab">
+    <keyboard-shortcut first-keystroke="alt left" />
+    <keyboard-shortcut first-keystroke="ctrl w" second-keystroke="h" />
+  </action>
+  <action id="SmartSelect" />
+</keymap>

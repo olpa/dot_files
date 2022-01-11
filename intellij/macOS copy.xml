@@ -1,0 +1,10 @@
+<keymap version="1" name="macOS copy" parent="Mac OS X 10.5+">
+  <action id="NextTab">
+    <keyboard-shortcut first-keystroke="shift meta close_bracket" />
+    <keyboard-shortcut first-keystroke="ctrl w" second-keystroke="l" />
+  </action>
+  <action id="PreviousTab">
+    <keyboard-shortcut first-keystroke="shift meta open_bracket" />
+    <keyboard-shortcut first-keystroke="ctrl w" second-keystroke="h" />
+  </action>
+</keymap>

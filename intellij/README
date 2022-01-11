@@ -1,0 +1,15 @@
+webstorm.desktop: a template for Linux
+
+# Key bindings
+
+Put file files to the configuration directory, the subdirectory `keymaps`:
+
+- Mac: 'macOS copy.xml'
+- Linux: 'GNOME copy.xml'
+
+The paths to the configuration directory:
+
+https://intellij-support.jetbrains.com/hc/en-us/articles/206544519-Directories-used-by-the-IDE-to-store-settings-caches-plugins-and-logs
+
+- Mac: ~/Library/Application Support/JetBrains/<product>
+- Linux: ~/.config/JetBrains/PyCharmCE2020.3 (and also in ~/.local/share)
