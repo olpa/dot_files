@@ -56,3 +56,17 @@ set list
 
 " au BufRead access_log* setf httplog
 inoremap jj <ESC>
+
+" -------- macros to make demos
+
+highlight GroupForDemo ctermbg=blue guibg=blue
+
+function Hldemo()
+  let [_, lnum, col1, _] = getpos('v')
+  let [_, _, col2, _] = getpos('.')
+  call matchaddpos("GroupForDemo", [[lnum, col1, col2-col1+1]])
+endfunction
+
+" :call clearmatches()
+
+xnoremap <expr> + Hldemo()
