@@ -39,7 +39,7 @@ resource "hcloud_server" "instance" {
   ssh_keys    = [hcloud_ssh_key.default.id]
 
   # User data to set up user, home on volume, and auto-shutdown
-  user_data = templatefile("${path.module}/init-user.sh", {
+  user_data = templatefile("${path.module}/init-instance.sh", {
     volume_id = hcloud_volume.storage.id
     username  = var.username
   })
