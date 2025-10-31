@@ -18,3 +18,5 @@ ssh_public_key  = "ssh-rsa AAAAB3NzaC1yc2E... your-public-key-here"
 # Restrict SSH access to your IP for better security
 # allowed_ssh_ips = ["YOUR.IP.ADDRESS/32"]
 allowed_ssh_ips = ["0.0.0.0/0", "::/0"]  # Allow from anywhere (less secure)
+
+username = "ubuntu"
