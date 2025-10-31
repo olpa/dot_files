@@ -6,7 +6,7 @@ server_name  = "temp-instance"
 server_type  = "cax11"  # Cheapest: ARM-based, 2 vCPU, 4GB RAM (~€4.45/month)
 # server_type  = "cx22"  # Alternative: x86-based, 2 vCPU, 4GB RAM (~€5.83/month)
 
-image        = "ubuntu-22.04"
+image        = "ubuntu-24.04"
 location     = "nbg1"  # Nuremberg - usually cheapest
 
 volume_name  = "attachable-storage"

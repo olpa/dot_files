@@ -51,7 +51,7 @@ chmod 0440 "/etc/sudoers.d/$USERNAME"
 
 # Disable root SSH login for security
 sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config
-systemctl reload sshd
+systemctl reload ssh
 
 # Install at if not present
 if ! command -v at &> /dev/null; then
