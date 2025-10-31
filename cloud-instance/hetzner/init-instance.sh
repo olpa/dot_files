@@ -30,13 +30,6 @@ while [ ! -d "/mnt/HC_Volume_${volume_id}" ] && [ $count -lt $max_wait ]; do
   count=$((count + 1))
 done
 
-# Set up home directory if not already configured
-if [ -d "$HOME_DIR/.ssh" ]; then
-  echo "Home directory already configured at $HOME_DIR, skipping setup"
-else
-  setup_home_directory "$HOME_DIR" "$USERNAME"
-fi
-
 # Create user with home directory on volume (if not exists)
 if ! id "$USERNAME" &>/dev/null; then
   useradd -m -d "$HOME_DIR" -s /bin/bash "$USERNAME"
@@ -44,6 +37,13 @@ fi
 
 # Ensure user is in sudo group
 usermod -aG sudo "$USERNAME"
+
+# Set up home directory if not already configured
+if [ -d "$HOME_DIR/.ssh" ]; then
+  echo "Home directory already configured at $HOME_DIR, skipping setup"
+else
+  setup_home_directory "$HOME_DIR" "$USERNAME"
+fi
 
 # Configure passwordless sudo
 echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/$USERNAME"
