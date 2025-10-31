@@ -38,23 +38,11 @@ resource "hcloud_server" "instance" {
   location    = var.location
   ssh_keys    = [hcloud_ssh_key.default.id]
 
-  # User data to set up auto-shutdown after 1h 55m
-  user_data = <<-EOF
-    #!/bin/bash
-
-    # Install at if not present
-    if ! command -v at &> /dev/null; then
-      apt-get update
-      apt-get install -y at
-      systemctl enable --now atd
-    fi
-
-    # Schedule shutdown after 1 hour 55 minutes (115 minutes)
-    echo "shutdown -h now" | at now + 115 minutes
-
-    # Optional: Log the scheduled shutdown
-    echo "Server will auto-shutdown at $(date -d '+115 minutes')" > /var/log/auto-shutdown.log
-  EOF
+  # User data to set up user, home on volume, and auto-shutdown
+  user_data = templatefile("${path.module}/init-user.sh", {
+    volume_id = hcloud_volume.storage.id
+    username  = var.username
+  })
 
   labels = {
     managed_by   = "terraform"

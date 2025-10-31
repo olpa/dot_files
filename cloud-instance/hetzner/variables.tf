@@ -5,7 +5,7 @@ variable "hcloud_token" {
 }
 
 variable "server_name" {
-  description = "cloud works"
+  description = "Name of the server"
   type        = string
   default     = "temp-instance"
 }
@@ -32,7 +32,7 @@ variable "location" {
 }
 
 variable "volume_name" {
-  description = "cloud works"
+  description = "Name of the cloud volume"
   type        = string
   default     = "attachable-storage"
 }
@@ -44,7 +44,7 @@ variable "volume_size" {
 }
 
 variable "ssh_key_name" {
-  description = "cloud works"
+  description = "Name for the SSH key"
   type        = string
   default     = "terraform-key"
 }
@@ -59,4 +59,10 @@ variable "allowed_ssh_ips" {
   description = "List of IPs allowed to SSH (use ['0.0.0.0/0', '::/0'] for all)"
   type        = list(string)
   default     = ["0.0.0.0/0", "::/0"]
+}
+
+variable "username" {
+  description = "Non-root sudo user to create on the instance"
+  type        = string
+  default     = "ubuntu"
 }
