@@ -40,7 +40,7 @@ variable "volume_name" {
 variable "volume_size" {
   description = "Size of the volume in GB (minimum 10)"
   type        = number
-  default     = 10
+  default     = 20
 }
 
 variable "ssh_key_name" {
