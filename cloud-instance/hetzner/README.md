@@ -31,12 +31,12 @@ This directory contains both **Terraform** configuration and **CLI scripts** to 
 
 4. **Create infrastructure:**
    ```bash
-   terraform apply
+   terraform apply --var hcloud_token=$(pass hetzner)
    ```
 
 5. **Connect to your server:**
    ```bash
-   ssh root@<server-ip>
+   ssh ubuntu@<server-ip> -i id_hetzner
    ```
    (The IP is shown in the terraform output)
 
