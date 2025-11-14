@@ -26,6 +26,22 @@ fi
 # Set permissions
 chmod 755 /mnt/data
 
+# Update package lists
+apt-get update
+
+# Install development tools and packages
+DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  vim \
+  python3 \
+  python3-pip \
+  python3-venv \
+  build-essential \
+  gcc \
+  g++ \
+  make \
+  clang \
+  nvidia-cuda-toolkit
+
 # Schedule automatic shutdown if enabled
 %{ if auto_shutdown_minutes > 0 ~}
 shutdown -h +${auto_shutdown_minutes}

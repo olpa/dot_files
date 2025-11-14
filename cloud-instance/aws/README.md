@@ -10,6 +10,7 @@ Terraform configuration for creating an AWS EC2 instance with an attached EBS vo
 - **SSM Access**: Connect via AWS Systems Manager Session Manager (no SSH keys needed)
 - **Auto-mounting**: EBS volume automatically mounted at `/mnt/data`
 - **Auto-termination**: Instance automatically terminates after 1 hour 50 minutes (configurable)
+- **Pre-installed Tools**: vim, Python 3, build tools (gcc, g++, make), clang, CUDA toolkit
 
 ## Prerequisites
 
