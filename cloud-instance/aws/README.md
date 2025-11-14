@@ -9,6 +9,7 @@ Terraform configuration for creating an AWS EC2 instance with an attached EBS vo
 - **Security Group**: Opens ports 3000, 8000, and 8080
 - **SSM Access**: Connect via AWS Systems Manager Session Manager (no SSH keys needed)
 - **Auto-mounting**: EBS volume automatically mounted at `/mnt/data`
+- **Auto-termination**: Instance automatically terminates after 1 hour 50 minutes (configurable)
 
 ## Prerequisites
 
@@ -54,6 +55,7 @@ Copy `terraform.tfvars.example` to `terraform.tfvars` and customize as needed:
 - `instance_name`: Name tag for the instance
 - `instance_type`: EC2 instance type (default: t3.micro)
 - `ebs_volume_size`: Size of EBS volume in GB (default: 30)
+- `auto_shutdown_minutes`: Auto-terminate after N minutes (default: 110, set to 0 to disable)
 
 ## Outputs
 

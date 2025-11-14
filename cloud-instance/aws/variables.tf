@@ -27,3 +27,9 @@ variable "ebs_volume_size" {
   type        = number
   default     = 30
 }
+
+variable "auto_shutdown_minutes" {
+  description = "Automatically terminate instance after this many minutes (0 to disable)"
+  type        = number
+  default     = 110
+}

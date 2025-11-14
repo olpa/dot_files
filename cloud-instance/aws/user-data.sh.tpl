@@ -25,3 +25,8 @@ fi
 
 # Set permissions
 chmod 755 /mnt/data
+
+# Schedule automatic shutdown if enabled
+%{ if auto_shutdown_minutes > 0 ~}
+shutdown -h +${auto_shutdown_minutes}
+%{ endif ~}

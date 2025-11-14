@@ -14,3 +14,6 @@
 
 # EBS volume size in GB (default: 30)
 # ebs_volume_size = 30
+
+# Auto-terminate instance after N minutes (default: 110, set to 0 to disable)
+# auto_shutdown_minutes = 110

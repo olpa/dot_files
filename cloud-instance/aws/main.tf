@@ -138,11 +138,12 @@ resource "aws_ebs_volume" "data_volume" {
 
 # EC2 Instance
 resource "aws_instance" "main" {
-  ami                    = data.aws_ami.ubuntu.id
-  instance_type          = var.instance_type
-  subnet_id              = data.aws_subnet.default.id
-  vpc_security_group_ids = [aws_security_group.instance_sg.id]
-  iam_instance_profile   = aws_iam_instance_profile.ssm_profile.name
+  ami                                  = data.aws_ami.ubuntu.id
+  instance_type                        = var.instance_type
+  subnet_id                            = data.aws_subnet.default.id
+  vpc_security_group_ids               = [aws_security_group.instance_sg.id]
+  iam_instance_profile                 = aws_iam_instance_profile.ssm_profile.name
+  instance_initiated_shutdown_behavior = "terminate"
 
   root_block_device {
     volume_type           = "gp3"
@@ -150,7 +151,9 @@ resource "aws_instance" "main" {
     delete_on_termination = true
   }
 
-  user_data = file("${path.module}/user-data.sh")
+  user_data = templatefile("${path.module}/user-data.sh.tpl", {
+    auto_shutdown_minutes = var.auto_shutdown_minutes
+  })
 
   tags = {
     Name = var.instance_name
