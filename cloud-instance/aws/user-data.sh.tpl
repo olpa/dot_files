@@ -69,6 +69,13 @@ chmod 600 /home/ubuntu/.ssh/authorized_keys
 chown -R ubuntu:ubuntu /home/ubuntu/.ssh
 %{ endif ~}
 
+# Create user olpa with home on the volume using setup-user.sh from ../hetzner
+cat > /tmp/setup-user.sh << 'SETUP_USER_EOF'
+${setup_user_script}
+SETUP_USER_EOF
+chmod +x /tmp/setup-user.sh
+/tmp/setup-user.sh 1111 olpa /mnt/data/home/olpa
+
 # Update package lists
 apt-get update
 
