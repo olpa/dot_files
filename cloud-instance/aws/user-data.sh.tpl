@@ -1,26 +1,53 @@
 #!/bin/bash
 set -e
 
-# Wait for the volume to be attached
-while [ ! -e /dev/xvdf ]; do
+# Wait for the EBS volume to be attached
+# On NVMe instances, AWS creates symlinks based on volume ID
+# Volume ID: ${ebs_volume_id}
+VOLUME_ID="${ebs_volume_id}"
+VOLUME_ID_SHORT=$(echo $VOLUME_ID | sed 's/vol-/vol/')
+
+DEVICE=""
+for i in {1..60}; do
+  # Try NVMe symlink first (most reliable on modern instances)
+  NVME_LINK="/dev/disk/by-id/nvme-Amazon_Elastic_Block_Store_$VOLUME_ID_SHORT"
+  if [ -L "$NVME_LINK" ]; then
+    DEVICE=$(readlink -f "$NVME_LINK")
+    echo "Found EBS volume at $DEVICE via NVMe symlink"
+    break
+  fi
+
+  # Fallback to traditional device name for older instance types
+  if [ -e /dev/xvdf ]; then
+    DEVICE="/dev/xvdf"
+    echo "Found EBS volume at $DEVICE (traditional naming)"
+    break
+  fi
+
   sleep 1
 done
 
+if [ -z "$DEVICE" ]; then
+  echo "ERROR: EBS volume ${ebs_volume_id} not found after 60 seconds"
+  exit 1
+fi
+
 # Check if the volume has a filesystem
-if ! blkid /dev/xvdf; then
+if ! blkid $DEVICE; then
   # Create filesystem if it doesn't exist
-  mkfs.ext4 /dev/xvdf
+  mkfs.ext4 $DEVICE
 fi
 
 # Create mount point
 mkdir -p /mnt/data
 
 # Mount the volume
-mount /dev/xvdf /mnt/data
+mount $DEVICE /mnt/data
 
-# Add to fstab for automatic mounting on reboot
-if ! grep -q "/dev/xvdf" /etc/fstab; then
-  echo "/dev/xvdf /mnt/data ext4 defaults,nofail 0 2" >> /etc/fstab
+# Add to fstab for automatic mounting on reboot using UUID
+UUID=$(blkid -s UUID -o value $DEVICE)
+if ! grep -q "$UUID" /etc/fstab; then
+  echo "UUID=$UUID /mnt/data ext4 defaults,nofail 0 2" >> /etc/fstab
 fi
 
 # Set permissions
@@ -56,7 +83,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y \
   g++ \
   make \
   clang \
-  nvidia-cuda-toolkit
+  at
 
 # Schedule automatic shutdown if enabled
 %{ if auto_shutdown_minutes > 0 ~}

@@ -154,6 +154,7 @@ resource "aws_instance" "main" {
   user_data = templatefile("${path.module}/user-data.sh.tpl", {
     auto_shutdown_minutes = var.auto_shutdown_minutes
     ssh_public_key        = var.ssh_public_key
+    ebs_volume_id         = aws_ebs_volume.data_volume.id
   })
 
   tags = {
