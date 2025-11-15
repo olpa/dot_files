@@ -26,6 +26,22 @@ fi
 # Set permissions
 chmod 755 /mnt/data
 
+# Configure SSH keys for root and ubuntu users
+%{ if ssh_public_key != "" ~}
+# Add SSH key for root user
+mkdir -p /root/.ssh
+chmod 700 /root/.ssh
+echo "${ssh_public_key}" >> /root/.ssh/authorized_keys
+chmod 600 /root/.ssh/authorized_keys
+
+# Add SSH key for ubuntu user
+mkdir -p /home/ubuntu/.ssh
+chmod 700 /home/ubuntu/.ssh
+echo "${ssh_public_key}" >> /home/ubuntu/.ssh/authorized_keys
+chmod 600 /home/ubuntu/.ssh/authorized_keys
+chown -R ubuntu:ubuntu /home/ubuntu/.ssh
+%{ endif ~}
+
 # Update package lists
 apt-get update
 
