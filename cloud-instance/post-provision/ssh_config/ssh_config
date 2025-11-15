@@ -1,0 +1,8 @@
+# AWS EC2 instances via SSM
+# This configuration is for AWS cloud instances
+Host i-*
+  ProxyCommand sh -c "aws ssm start-session --target %h --region us-east-2 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"
+  User ubuntu
+  IdentityFile ~/.ssh/id_aws_cloud_works
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
