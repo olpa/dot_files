@@ -1,0 +1,12 @@
+---
+- name: Run uname on host
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Execute uname -a
+      command: uname -a
+      register: uname_output
+
+    - name: Display uname output
+      debug:
+        var: uname_output.stdout
