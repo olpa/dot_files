@@ -2,6 +2,24 @@
 
 Terraform configuration for creating an AWS EC2 instance with an attached EBS volume.
 
+## TLDR
+
+Quick launch with memory-optimized spot instance:
+
+```bash
+terraform init
+terraform apply -var="instance_type=r5.xlarge" -var="use_spot_instance=true"
+```
+
+**Why r5.xlarge?** Memory-optimized instances (r5 family) provide better value for memory-intensive workloads: 32GB RAM for ~$0.008/GB vs m5's ~$0.012/GB. As a spot instance, this gives you 32GB RAM for up to 90% off (~$18/month vs $184/month on-demand).
+
+For GPU (ML/AI workloads):
+
+```bash
+# G4dn with NVIDIA T4 GPU - spot ~$0.16/hr (~$117/mo) vs on-demand $0.526/hr
+terraform apply -var="instance_type=g4dn.xlarge" -var="use_spot_instance=true"
+```
+
 ## Features
 
 - **EC2 Instance**: Ubuntu LTS (24.04) instance

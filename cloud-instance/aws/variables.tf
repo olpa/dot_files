@@ -39,3 +39,9 @@ variable "ssh_public_key" {
   type        = string
   default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMAtjRU4xASrBwJO8n6KWyrsxWn3v6fh35JBiDfVg0I/ olpa@cloud-works"
 }
+
+variable "use_spot_instance" {
+  description = "Use spot instance instead of on-demand"
+  type        = bool
+  default     = false
+}

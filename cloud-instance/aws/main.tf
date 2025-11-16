@@ -143,7 +143,18 @@ resource "aws_instance" "main" {
   subnet_id                            = data.aws_subnet.default.id
   vpc_security_group_ids               = [aws_security_group.instance_sg.id]
   iam_instance_profile                 = aws_iam_instance_profile.ssm_profile.name
-  instance_initiated_shutdown_behavior = "terminate"
+  instance_initiated_shutdown_behavior = var.use_spot_instance ? null : "terminate"
+
+  dynamic "instance_market_options" {
+    for_each = var.use_spot_instance ? [1] : []
+    content {
+      market_type = "spot"
+      spot_options {
+        instance_interruption_behavior = "terminate"
+        spot_instance_type             = "one-time"
+      }
+    }
+  }
 
   root_block_device {
     volume_type           = "gp3"
