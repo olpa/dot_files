@@ -13,6 +13,15 @@ terraform apply -var="instance_type=r5.xlarge" -var="use_spot_instance=true"
 
 **Why r5.xlarge?** Memory-optimized instances (r5 family) provide better value for memory-intensive workloads: 32GB RAM for ~$0.008/GB vs m5's ~$0.012/GB. As a spot instance, this gives you 32GB RAM for up to 90% off (~$18/month vs $184/month on-demand).
 
+For compute-intensive workloads (single CPU):
+
+```bash
+# C6i with 2 vCPUs, 4GB RAM - spot ~$0.017/hr (~$12/mo) vs on-demand $0.085/hr
+terraform apply -var="instance_type=c6i.large" -var="use_spot_instance=true"
+```
+
+**Why c6i.large?** Compute-optimized instances (c6i family) provide better CPU performance than general-purpose instances at a lower cost. The c6i.large offers 2 vCPUs with 3.5 GHz all-core turbo frequency and 4GB RAM, ideal for CPU-intensive tasks like compilation or processing.
+
 For GPU (ML/AI workloads):
 
 ```bash
