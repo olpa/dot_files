@@ -25,7 +25,7 @@ variable "instance_type" {
 variable "ebs_volume_size" {
   description = "Size of the EBS volume in GB"
   type        = number
-  default     = 30
+  default     = 50
 }
 
 variable "auto_shutdown_minutes" {
