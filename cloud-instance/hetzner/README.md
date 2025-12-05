@@ -2,6 +2,10 @@
 
 This directory contains both **Terraform** configuration and **CLI scripts** to create a cheap Hetzner Cloud instance with attachable storage that automatically shuts down after 1 hour 55 minutes.
 
+!!!
+!!! WORK IN PROGRESS
+!!!
+
 ## Features
 
 - ✅ Creates the cheapest Hetzner Cloud instance (ARM-based CAX11: ~€4.45/month)
