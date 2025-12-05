@@ -1,0 +1,19 @@
+# Copy this file to terraform.tfvars and customize the values
+
+# AWS region (default: us-east-2 - Ohio, cheapest region)
+# aws_region = "us-east-2"
+
+# Availability zone for the EBS volume and instance (default: us-east-2a)
+# availability_zone = "us-east-2a"
+
+# Name tag for the instance (default: cloud-instance)
+# instance_name = "cloud-instance"
+
+# EC2 instance type (default: t3.micro)
+# instance_type = "t3.micro"
+
+# EBS volume size in GB (default: 30)
+# ebs_volume_size = 30
+
+# Auto-terminate instance after N minutes (default: 110, set to 0 to disable)
+# auto_shutdown_minutes = 110

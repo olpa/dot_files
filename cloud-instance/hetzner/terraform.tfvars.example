@@ -1,0 +1,22 @@
+# Copy this file to terraform.tfvars and fill in your values
+
+hcloud_token = "your-hetzner-cloud-api-token-here"
+
+server_name  = "temp-instance"
+server_type  = "cax11"  # Cheapest: ARM-based, 2 vCPU, 4GB RAM (~€4.45/month)
+# server_type  = "cx22"  # Alternative: x86-based, 2 vCPU, 4GB RAM (~€5.83/month)
+
+image        = "ubuntu-24.04"
+location     = "nbg1"  # Nuremberg - usually cheapest
+
+volume_name  = "attachable-storage"
+volume_size  = 10  # GB - minimum is 10GB
+
+ssh_key_name    = "my-ssh-key"
+ssh_public_key  = "ssh-rsa AAAAB3NzaC1yc2E... your-public-key-here"
+
+# Restrict SSH access to your IP for better security
+# allowed_ssh_ips = ["YOUR.IP.ADDRESS/32"]
+allowed_ssh_ips = ["0.0.0.0/0", "::/0"]  # Allow from anywhere (less secure)
+
+username = "ubuntu"
